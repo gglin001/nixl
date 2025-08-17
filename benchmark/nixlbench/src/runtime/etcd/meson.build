@@ -20,7 +20,7 @@ etcd_rt_sources = [
 
 etcd_rt_lib = static_library('etcd_rt',
   etcd_rt_sources,
-  include_directories: inc_dir,
+  include_directories: [inc_dir, etcd_inc_path],
   dependencies: [etcd_dep],
   install: true,
 )
@@ -32,7 +32,7 @@ pybind11_dep = dependency('pybind11', required: false)
 if python.found() and pybind11_dep.found()
   py_mod = python.extension_module('etcd_runtime',
     'python_bindings.cpp',
-    include_directories: inc_dir,
+    include_directories: [inc_dir, etcd_inc_path],
     dependencies: [etcd_dep, pybind11_dep],
     link_with: etcd_rt_lib,
     install: true,
