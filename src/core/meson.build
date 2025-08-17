@@ -53,11 +53,13 @@ if libtransfer_engine.found() and not disable_mooncake_backend and 'Mooncake' in
     nixl_lib_deps += [ mooncake_backend_interface, cuda_dep ]
 endif
 
+etcd_inc_dirs = include_directories('/opt/etcd-cpp-apiv3/include')
+
 nixl_lib = library('nixl',
                    'nixl_agent.cpp',
                    'nixl_plugin_manager.cpp',
                    'nixl_listener.cpp',
-                   include_directories: [ nixl_inc_dirs, utils_inc_dirs ],
+                   include_directories: [ nixl_inc_dirs, utils_inc_dirs, etcd_inc_dirs ],
                    link_args: ['-lstdc++fs'],
                    dependencies: nixl_lib_deps,
                    install: true)

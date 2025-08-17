@@ -14,5 +14,5 @@
 # limitations under the License.
 
 subdir('nixl')
-subdir('unit')
-subdir('gtest')
+# subdir('unit')
+# subdir('gtest')

@@ -14,6 +14,7 @@
 # limitations under the License.
 
 mooncake_backend_dep = declare_dependency(link_with: mooncake_backend_lib, include_directories: [nixl_inc_dirs, '../../../../src/plugins/mooncake'])
+mooncake_inc_dirs = include_directories('/opt/mooncake/include')
 
 if cuda_dep.found()
     cuda_dependencies = [cuda_dep]
@@ -26,6 +27,6 @@ endif
 mooncake_backend_test = executable('mooncake_backend_test',
         'mooncake_backend_test.cpp',
         dependencies: [nixl_dep, nixl_infra, mooncake_backend_dep, thread_dep] + cuda_dependencies,
-        include_directories: [nixl_inc_dirs, utils_inc_dirs, '../../../../src/plugins/mooncake'],
+        include_directories: [nixl_inc_dirs, utils_inc_dirs, '../../../../src/plugins/mooncake', mooncake_inc_dirs],
         cpp_args : cpp_args,
         install: true)
